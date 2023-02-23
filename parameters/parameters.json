@@ -1,0 +1,121 @@
+{
+    "location": "",
+    publicIpName
+    nicName
+    virtualNetworkName
+    subnetName
+    location
+    networkSecurityGroupName
+    location
+    networkSecurityGroupName
+    location
+    publicIpName
+    publicIPAllocationMethod
+    publicIpSku
+    vmName
+    dnsLabelPrefix
+}
+param location string = resourceGroup().location
+param publicIpName string = 'myPublicIP'
+
+param nicName string = 'myVMNic'
+param virtualNetworkName string = 'MyVNET'
+param subnetName string = 'Subnet'
+
+@description('Location for all resources.')
+param location string = resourceGroup().location
+
+param networkSecurityGroupName string = 'default-NSG'
+
+@description('Location for all resources.')
+param location string = resourceGroup().location
+
+@description('Name for the Public IP used to access the Virtual Machine.')
+param publicIpName string = 'myPublicIP'
+
+param publicIPAllocationMethod string = 'Dynamic'
+
+param publicIpSku string = 'Basic'
+
+@description('Name of the virtual machine.')
+param vmName string = 'simple-vm'
+
+@description('Unique DNS Name for the Public IP used to access the Virtual Machine.')
+param dnsLabelPrefix string = toLower('${vmName}-${uniqueString(resourceGroup().id, vmName)}')
+
+@description('Location for all resources.')
+param location string = resourceGroup().location
+
+param storageAccountName string = 'bootdiags${uniqueString(resourceGroup().id)}'
+
+@description('Username for the Virtual Machine.')
+param adminUsername string
+
+@description('Password for the Virtual Machine.')
+@minLength(12)
+@secure()
+param adminPassword string
+
+@description('The Windows version for the VM. This will pick a fully patched image of this given Windows version.')
+@allowed([
+  '2016-datacenter-gensecond'
+  '2016-datacenter-server-core-g2'
+  '2016-datacenter-server-core-smalldisk-g2'
+  '2016-datacenter-smalldisk-g2'
+  '2016-datacenter-with-containers-g2'
+  '2016-datacenter-zhcn-g2'
+  '2019-datacenter-core-g2'
+  '2019-datacenter-core-smalldisk-g2'
+  '2019-datacenter-core-with-containers-g2'
+  '2019-datacenter-core-with-containers-smalldisk-g2'
+  '2019-datacenter-gensecond'
+  '2019-datacenter-smalldisk-g2'
+  '2019-datacenter-with-containers-g2'
+  '2019-datacenter-with-containers-smalldisk-g2'
+  '2019-datacenter-zhcn-g2'
+  '2022-datacenter-azure-edition'
+  '2022-datacenter-azure-edition-core'
+  '2022-datacenter-azure-edition-core-smalldisk'
+  '2022-datacenter-azure-edition-smalldisk'
+  '2022-datacenter-core-g2'
+  '2022-datacenter-core-smalldisk-g2'
+  '2022-datacenter-g2'
+  '2022-datacenter-smalldisk-g2'
+])
+param OSVersion string = '2022-datacenter-azure-edition'
+
+@description('Size of the virtual machine.')
+param vmSize string = 'Standard_D2s_v5'
+
+@description('Location for all resources.')
+param location string = resourceGroup().location
+
+@description('Name of the virtual machine.')
+param vmName string = 'simple-vm'
+
+param nicName string = 'myVMNic'
+param storageAccountName string = 'bootdiags${uniqueString(resourceGroup().id)}'
+
+@description('Security Type of the Virtual Machine.')
+@allowed([
+  'Standard'
+  'TrustedLaunch'
+])
+param securityType string = 'TrustedLaunch'
+
+@description('Location for all resources.')
+param location string = resourceGroup().location
+
+@description('Security Type of the Virtual Machine.')
+@allowed([
+  'Standard'
+  'TrustedLaunch'
+])
+param securityType string = 'TrustedLaunch'
+
+param vmName string = 'simple-vm'
+
+@description('Location for all resources.')
+param location string = resourceGroup().location
+
+param networkSecurityGroupName string = 'default-NSG'
