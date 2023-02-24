@@ -6,7 +6,7 @@
 trigger:
 - main
 
-name: Deploy Azure VM w/ disks
+name: Deploy Azure VM with disks
 
 variables:
   vmImageName: 'ubuntu-latest'
@@ -37,7 +37,7 @@ steps:
     location: '$(location)'
     templateLocation: 'Linked artifact'
     csmFile: '$(diskTemplateFile)'
-    overrideParameters: '-name OSDisk -sku StandardHDD_LRS -diskSizeGB 127 -diskIOPSReadWrite 500 -diskMBpsReadWrite 60'
+    overrideParameters: '-name OSDisk -sku Standard_LRS -diskSizeGB 127 -diskIOPSReadWrite 500 -diskMBpsReadWrite 60'
     deploymentMode: 'Incremental'
     deploymentName: 'DeployPipelineTemplate'
 - task: AzureResourceManagerTemplateDeployment@3
