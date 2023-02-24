@@ -76,7 +76,7 @@ steps:
     location: '$(location)'
     templateLocation: 'Linked artifact'
     csmFile: '$(vmTemplateFile)'
-    overrideParameters: '-adminUsername headet -adminPassword $(adminPassword) -vmSize Standard_A8m_v2 -vmName thetabcsync -nicName thetabcsync464 -storageAccountName thetabcsyncdiag -diskOsName OSDisk -disk0Name SSD-SQLData -disk1Name SSD-SQLLog -diskOsSku Standard_LRS -diskOsSizeGB 127 -disk0Sku StandardSSD_LRS -disk0SizeGB 256 -disk1Sku StandardSSD_LRS -disk1SizeGB 256'
+    overrideParameters: '-adminUsername headet -adminPassword $(adminPassword) -vmSize Standard_A2m_v2 -vmName thetabcsync -nicName thetabcsync464 -storageAccountName thetabcsyncdiag2 -diskOsName OSDisk -disk0Name SSD-SQLData -disk1Name SSD-SQLLog -diskOsSku Standard_LRS -diskOsSizeGB 127 -disk0Sku StandardSSD_LRS -disk0SizeGB 256 -disk1Sku StandardSSD_LRS -disk1SizeGB 256'
     deploymentMode: 'Incremental'
     deploymentName: 'DeployPipelineTemplate'
 - task: AzureResourceManagerTemplateDeployment@3
