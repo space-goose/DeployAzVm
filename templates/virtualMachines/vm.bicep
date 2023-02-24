@@ -21,6 +21,26 @@ param diskOsName string
 param disk0Name string 
 param disk1Name string
 
+param diskOsSku string
+param diskOsSizeGB int
+param disk0Sku string
+param disk0SizeGB int
+param disk1Sku string
+param disk1SizeGB int
+
+/*param diskOsIOPSReadWrite int
+param diskOsMBpsReadWrite int
+
+param disk0Sku string
+param disk0SizeGB int
+param disk0IOPSReadWrite int
+param disk0MBpsReadWrite int
+
+param disk1Sku string
+param disk1SizeGB int
+param disk1IOPSReadWrite int 
+param disk1MBpsReadWrite int*/
+
 resource nic 'Microsoft.Network/networkInterfaces@2022-05-01' existing = {
   name: nicName
 }
@@ -29,7 +49,7 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2022-05-01' existing 
   name: storageAccountName
 }
 
-resource diskOs 'Microsoft.Compute/disks@2022-07-02' existing = {
+/*resource diskOs 'Microsoft.Compute/disks@2022-07-02' existing = {
   name: diskOsName
 }
 
@@ -39,7 +59,7 @@ resource disk0 'Microsoft.Compute/disks@2022-07-02' existing = {
 
 resource disk1 'Microsoft.Compute/disks@2022-07-02' existing = {
   name: disk1Name
-}
+}*/
 
 resource vm 'Microsoft.Compute/virtualMachines@2022-11-01' = {
   name: vmName
@@ -62,35 +82,38 @@ resource vm 'Microsoft.Compute/virtualMachines@2022-11-01' = {
         version: 'latest'
       }
       osDisk: {
+        name: diskOsName
         osType: 'Windows'
+        diskSizeGB: diskOsSizeGB
         createOption: 'FromImage'
         caching: 'ReadWrite'
         writeAcceleratorEnabled: false
         managedDisk: {
-          storageAccountType: 'Standard_LRS'
-          id: diskOs.id
+          storageAccountType: diskOsSku
         }
       }
       dataDisks: [
         {
           lun: 0
+          name: disk0Name
+          diskSizeGB: disk0SizeGB
           createOption: 'Attach'
           caching: 'None'
           writeAcceleratorEnabled: false
           managedDisk: {
-            storageAccountType: 'StandardSSD_LRS'
-            id: disk0.id
+            storageAccountType: disk0Sku
           }
           toBeDetached: false
         }
         {
           lun: 1
+          name: disk1Name
+          diskSizeGB: disk1SizeGB
           createOption: 'Attach'
           caching: 'None'
           writeAcceleratorEnabled: false
           managedDisk: {
-            storageAccountType: 'StandardSSD_LRS'
-            id: disk1.id
+            storageAccountType: disk1Sku
           }
           toBeDetached: false
         }

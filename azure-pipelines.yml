@@ -27,46 +27,46 @@ steps:
     script: |
       echo  '$(System.DefaultWorkingDirectory)'
       dir
-- task: AzureResourceManagerTemplateDeployment@3
-  displayName: 'Create OS Disk'
-  inputs:
-    deploymentScope: 'Resource Group'
-    azureResourceManagerConnection: '$(azureServiceConnection)'
-    action: 'Create Or Update Resource Group'
-    resourceGroupName: '$(resourceGroupName)'
-    location: '$(location)'
-    templateLocation: 'Linked artifact'
-    csmFile: '$(diskTemplateFile)'
-    overrideParameters: '-name OSDisk -sku Standard_LRS -diskSizeGB 127 -diskIOPSReadWrite 500 -diskMBpsReadWrite 60'
-    deploymentMode: 'Incremental'
-    deploymentName: 'DeployPipelineTemplate'
-- task: AzureResourceManagerTemplateDeployment@3
-  displayName: 'Create Disk 0'
-  inputs:
-    deploymentScope: 'Resource Group'
-    azureResourceManagerConnection: '$(azureServiceConnection)'
-    action: 'Create Or Update Resource Group'
-    resourceGroupName: '$(resourceGroupName)'
-    location: '$(location)'
-    templateLocation: 'Linked artifact'
-    csmFile: '$(diskTemplateFile)'
-    overrideParameters: '-name SSD-SQLData -sku StandardSSD_LRS -diskSizeGB 256 -diskIOPSReadWrite 500 -diskMBpsReadWrite 60'
-    deploymentMode: 'Incremental'
-    deploymentName: 'DeployPipelineTemplate'
-- task: AzureResourceManagerTemplateDeployment@3
-  displayName: 'Create Disk 1'
-  inputs:
-    deploymentScope: 'Resource Group'
-    azureResourceManagerConnection: '$(azureServiceConnection)'
-    action: 'Create Or Update Resource Group'
-    resourceGroupName: '$(resourceGroupName)'
-    location: '$(location)'
-    templateLocation: 'Linked artifact'
-    csmFile: '$(diskTemplateFile)'
-    overrideParameters: '-name SSD-SQLLog -sku StandardSSD_LRS -diskSizeGB 256 -diskIOPSReadWrite 500 -diskMBpsReadWrite 60'
-    deploymentMode: 'Incremental'
-    deploymentName: 'DeployPipelineTemplate'
-- task: AzureResourceManagerTemplateDeployment@3
+# - task: AzureResourceManagerTemplateDeployment@3
+#   displayName: 'Create OS Disk'
+#   inputs:
+#     deploymentScope: 'Resource Group'
+#     azureResourceManagerConnection: '$(azureServiceConnection)'
+#     action: 'Create Or Update Resource Group'
+#     resourceGroupName: '$(resourceGroupName)'
+#     location: '$(location)'
+#     templateLocation: 'Linked artifact'
+#     csmFile: '$(diskTemplateFile)'
+#     overrideParameters: '-name OSDisk -sku Standard_LRS -diskSizeGB 127 -diskIOPSReadWrite 500 -diskMBpsReadWrite 60'
+#     deploymentMode: 'Incremental'
+#     deploymentName: 'DeployPipelineTemplate'
+# - task: AzureResourceManagerTemplateDeployment@3
+#   displayName: 'Create Disk 0'
+#   inputs:
+#     deploymentScope: 'Resource Group'
+#     azureResourceManagerConnection: '$(azureServiceConnection)'
+#     action: 'Create Or Update Resource Group'
+#     resourceGroupName: '$(resourceGroupName)'
+#     location: '$(location)'
+#     templateLocation: 'Linked artifact'
+#     csmFile: '$(diskTemplateFile)'
+#     overrideParameters: '-name SSD-SQLData -sku StandardSSD_LRS -diskSizeGB 256 -diskIOPSReadWrite 500 -diskMBpsReadWrite 60'
+#     deploymentMode: 'Incremental'
+#     deploymentName: 'DeployPipelineTemplate'
+# - task: AzureResourceManagerTemplateDeployment@3
+#   displayName: 'Create Disk 1'
+#   inputs:
+#     deploymentScope: 'Resource Group'
+#     azureResourceManagerConnection: '$(azureServiceConnection)'
+#     action: 'Create Or Update Resource Group'
+#     resourceGroupName: '$(resourceGroupName)'
+#     location: '$(location)'
+#     templateLocation: 'Linked artifact'
+#     csmFile: '$(diskTemplateFile)'
+#     overrideParameters: '-name SSD-SQLLog -sku StandardSSD_LRS -diskSizeGB 256 -diskIOPSReadWrite 500 -diskMBpsReadWrite 60'
+#     deploymentMode: 'Incremental'
+#     deploymentName: 'DeployPipelineTemplate'
+# - task: AzureResourceManagerTemplateDeployment@3
   displayName: 'Create VM'
   inputs:
     deploymentScope: 'Resource Group'
@@ -76,7 +76,7 @@ steps:
     location: '$(location)'
     templateLocation: 'Linked artifact'
     csmFile: '$(vmTemplateFile)'
-    overrideParameters: '-adminUsername headet -adminPassword $(adminPassword) -vmSize Standard_A8m_v2 -vmName thetabcsync -nicName thetabcsync464 -storageAccountName thetabcsyncdiag -diskOsName OSDisk -disk0Name SSD-SQLData -disk1Name SSD-SQLLog'
+    overrideParameters: '-adminUsername headet -adminPassword $(adminPassword) -vmSize Standard_A8m_v2 -vmName thetabcsync -nicName thetabcsync464 -storageAccountName thetabcsyncdiag -diskOsName OSDisk -disk0Name SSD-SQLData -disk1Name SSD-SQLLog -diskOsSku Standard_LRS -diskOsSizeGB 127 -disk0Sku StandardSSD_LRS -disk0SizeGB 256 -disk1Sku StandardSSD_LRS -disk1SizeGB 256'
     deploymentMode: 'Incremental'
     deploymentName: 'DeployPipelineTemplate'
 - task: AzureResourceManagerTemplateDeployment@3
