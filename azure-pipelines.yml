@@ -66,7 +66,7 @@ steps:
 #     overrideParameters: '-name SSD-SQLLog -sku StandardSSD_LRS -diskSizeGB 256 -diskIOPSReadWrite 500 -diskMBpsReadWrite 60'
 #     deploymentMode: 'Incremental'
 #     deploymentName: 'DeployPipelineTemplate'
- - task: AzureResourceManagerTemplateDeployment@3
+- task: AzureResourceManagerTemplateDeployment@3
   displayName: 'Create VM'
   inputs:
     deploymentScope: 'Resource Group'
