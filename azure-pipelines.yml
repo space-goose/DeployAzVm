@@ -13,15 +13,20 @@ variables:
   azureServiceConnection: 'AzureDevOps'
   resourceGroupName: 'rg-theta-vm-01'
   location: 'australiaeast'
-  diskTemplateFile: '.templates/disks/disk.bicep'
-  watcherTemplateFile: '.templates/virtualMachines/azureNetworkWatcher.bicep'
-  diagTemplateFile: '.templates/virtualMachines/vmDiagnostics.bicep'
-  vmTemplateFile: '.templates/virtualMachines/vm.bicep'
+  diskTemplateFile: './templates/disks/disk.bicep'
+  watcherTemplateFile: './templates/virtualMachines/azureNetworkWatcher.bicep'
+  diagTemplateFile: './templates/virtualMachines/vmDiagnostics.bicep'
+  vmTemplateFile: './templates/virtualMachines/vm.bicep'
 
 pool:
   vmImage: $(vmImageName)
 
 steps:
+- task: CmdLine@2
+  inputs:
+    script: |
+      echo  '$(System.DefaultWorkingDirectory)'
+      dir
 - task: AzureResourceManagerTemplateDeployment@3
   displayName: 'Create OS Disk'
   inputs:
