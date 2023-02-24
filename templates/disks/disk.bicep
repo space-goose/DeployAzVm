@@ -2,7 +2,7 @@
 param location string = resourceGroup().location
 
 param name string
-
+param sku string
 param diskSizeGB int = 256
 param diskIOPSReadWrite int = 500
 param diskMBpsReadWrite int = 60
@@ -11,7 +11,7 @@ resource disk 'Microsoft.Compute/disks@2022-07-02' = {
   name: name
   location: location
   sku: {
-    name: 'StandardSSD_LRS'
+    name: sku
   }
   properties: {
     creationData: {
