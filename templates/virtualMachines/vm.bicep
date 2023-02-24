@@ -49,7 +49,7 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2022-05-01' existing 
   name: storageAccountName
 }
 
-/*resource diskOs 'Microsoft.Compute/disks@2022-07-02' existing = {
+resource diskOs 'Microsoft.Compute/disks@2022-07-02' existing = {
   name: diskOsName
 }
 
@@ -59,7 +59,7 @@ resource disk0 'Microsoft.Compute/disks@2022-07-02' existing = {
 
 resource disk1 'Microsoft.Compute/disks@2022-07-02' existing = {
   name: disk1Name
-}*/
+}
 
 resource vm 'Microsoft.Compute/virtualMachines@2022-11-01' = {
   name: vmName
@@ -102,6 +102,7 @@ resource vm 'Microsoft.Compute/virtualMachines@2022-11-01' = {
           writeAcceleratorEnabled: false
           managedDisk: {
             storageAccountType: disk0Sku
+            id: disk0.id
           }
           toBeDetached: false
         }
@@ -114,6 +115,7 @@ resource vm 'Microsoft.Compute/virtualMachines@2022-11-01' = {
           writeAcceleratorEnabled: false
           managedDisk: {
             storageAccountType: disk1Sku
+            id: disk1.id
           }
           toBeDetached: false
         }

@@ -27,45 +27,45 @@ steps:
     script: |
       echo  '$(System.DefaultWorkingDirectory)'
       dir
-# - task: AzureResourceManagerTemplateDeployment@3
-#   displayName: 'Create OS Disk'
-#   inputs:
-#     deploymentScope: 'Resource Group'
-#     azureResourceManagerConnection: '$(azureServiceConnection)'
-#     action: 'Create Or Update Resource Group'
-#     resourceGroupName: '$(resourceGroupName)'
-#     location: '$(location)'
-#     templateLocation: 'Linked artifact'
-#     csmFile: '$(diskTemplateFile)'
-#     overrideParameters: '-name OSDisk -sku Standard_LRS -diskSizeGB 127 -diskIOPSReadWrite 500 -diskMBpsReadWrite 60'
-#     deploymentMode: 'Incremental'
-#     deploymentName: 'DeployPipelineTemplate'
-# - task: AzureResourceManagerTemplateDeployment@3
-#   displayName: 'Create Disk 0'
-#   inputs:
-#     deploymentScope: 'Resource Group'
-#     azureResourceManagerConnection: '$(azureServiceConnection)'
-#     action: 'Create Or Update Resource Group'
-#     resourceGroupName: '$(resourceGroupName)'
-#     location: '$(location)'
-#     templateLocation: 'Linked artifact'
-#     csmFile: '$(diskTemplateFile)'
-#     overrideParameters: '-name SSD-SQLData -sku StandardSSD_LRS -diskSizeGB 256 -diskIOPSReadWrite 500 -diskMBpsReadWrite 60'
-#     deploymentMode: 'Incremental'
-#     deploymentName: 'DeployPipelineTemplate'
-# - task: AzureResourceManagerTemplateDeployment@3
-#   displayName: 'Create Disk 1'
-#   inputs:
-#     deploymentScope: 'Resource Group'
-#     azureResourceManagerConnection: '$(azureServiceConnection)'
-#     action: 'Create Or Update Resource Group'
-#     resourceGroupName: '$(resourceGroupName)'
-#     location: '$(location)'
-#     templateLocation: 'Linked artifact'
-#     csmFile: '$(diskTemplateFile)'
-#     overrideParameters: '-name SSD-SQLLog -sku StandardSSD_LRS -diskSizeGB 256 -diskIOPSReadWrite 500 -diskMBpsReadWrite 60'
-#     deploymentMode: 'Incremental'
-#     deploymentName: 'DeployPipelineTemplate'
+- task: AzureResourceManagerTemplateDeployment@3
+  displayName: 'Create OS Disk'
+  inputs:
+    deploymentScope: 'Resource Group'
+    azureResourceManagerConnection: '$(azureServiceConnection)'
+    action: 'Create Or Update Resource Group'
+    resourceGroupName: '$(resourceGroupName)'
+    location: '$(location)'
+    templateLocation: 'Linked artifact'
+    csmFile: '$(diskTemplateFile)'
+    overrideParameters: '-name OSDisk -sku Standard_LRS -diskSizeGB 127 -diskIOPSReadWrite 500 -diskMBpsReadWrite 60'
+    deploymentMode: 'Incremental'
+    deploymentName: 'DeployPipelineTemplate'
+- task: AzureResourceManagerTemplateDeployment@3
+  displayName: 'Create Disk 0'
+  inputs:
+    deploymentScope: 'Resource Group'
+    azureResourceManagerConnection: '$(azureServiceConnection)'
+    action: 'Create Or Update Resource Group'
+    resourceGroupName: '$(resourceGroupName)'
+    location: '$(location)'
+    templateLocation: 'Linked artifact'
+    csmFile: '$(diskTemplateFile)'
+    overrideParameters: '-name SSD-SQLData -sku StandardSSD_LRS -diskSizeGB 256 -diskIOPSReadWrite 500 -diskMBpsReadWrite 60'
+    deploymentMode: 'Incremental'
+    deploymentName: 'DeployPipelineTemplate'
+- task: AzureResourceManagerTemplateDeployment@3
+  displayName: 'Create Disk 1'
+  inputs:
+    deploymentScope: 'Resource Group'
+    azureResourceManagerConnection: '$(azureServiceConnection)'
+    action: 'Create Or Update Resource Group'
+    resourceGroupName: '$(resourceGroupName)'
+    location: '$(location)'
+    templateLocation: 'Linked artifact'
+    csmFile: '$(diskTemplateFile)'
+    overrideParameters: '-name SSD-SQLLog -sku StandardSSD_LRS -diskSizeGB 256 -diskIOPSReadWrite 500 -diskMBpsReadWrite 60'
+    deploymentMode: 'Incremental'
+    deploymentName: 'DeployPipelineTemplate'
  - task: AzureResourceManagerTemplateDeployment@3
   displayName: 'Create VM'
   inputs:
