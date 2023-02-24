@@ -12,7 +12,7 @@ variables:
   vmImageName: 'ubuntu-latest'
   azureServiceConnection: 'AzureDevOps'
   resourceGroupName: 'rg-theta-vm-01'
-  location: 'australia-east'
+  location: 'australiaeast'
   diskTemplateFile: './disks/disk.bicep'
   watcherTemplateFile: './virtualMachines/azureNetworkWatcher.bicep'
   diagTemplateFile: './virtualMachines/vmDiagnostics.bicep'
