@@ -10,7 +10,7 @@ name: Deploy Azure VM w/ disks
 
 variables:
   vmImageName: 'ubuntu-latest'
-  azureServiceConnection: '<your-connection-name>'
+  azureServiceConnection: 'AzureDevOps'
   resourceGroupName: 'rg-theta-vm-01'
   location: 'australia-east'
   diskTemplateFile: './disks/disk.bicep'
